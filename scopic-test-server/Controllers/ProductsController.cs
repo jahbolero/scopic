@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using scopic_test_server.DTO;
 using scopic_test_server.Interface;
+using System.Linq;
 
 namespace scopic_test_server
 {
@@ -22,10 +23,10 @@ namespace scopic_test_server
         }
         //GET api/products/
         [HttpGet]
-        public ActionResult<ProductReadDto> GetAllProducts(int Page, int Role)
+        public ActionResult<List<ProductReadDto>> GetAllProducts(int Page, int Role, bool? Sort, string SearchString)
         {
-            var result = _repository.GetAllProducts(Page, Role);
-            return Ok(_mapper.Map<ProductReadDto>(result));
+            var result = _repository.GetAllProducts(Page, Role, Sort, SearchString);
+            return Ok(_mapper.Map<List<ProductReadDto>>(result.ToList()));
         }
         //GET api/products/
         [HttpGet]
@@ -33,6 +34,14 @@ namespace scopic_test_server
         public ActionResult<ProductReadDto> GetProduct(Guid ProductId)
         {
             var result = _repository.GetProduct(ProductId);
+            return Ok(_mapper.Map<ProductReadDto>(result));
+        }
+        //POST api/products/addProduct
+        [HttpPost]
+        [Route("addProduct")]
+        public ActionResult<ProductReadDto> AddProduct([FromForm] ProductCreateDto Product)
+        {
+            var result = _repository.AddProduct(Product);
             return Ok(_mapper.Map<ProductReadDto>(result));
         }
     }

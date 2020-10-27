@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace scopic_test_server.Data
@@ -19,5 +20,7 @@ namespace scopic_test_server.Data
 
         [Required]
         public DateTime UploadDate { get; set; }
+
+        public virtual ICollection<Bid> Categories { get; set; }
     }
 }
