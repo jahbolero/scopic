@@ -7,7 +7,9 @@ import {ProductListComponent} from './components/product-list/product-list.compo
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductComponent } from './components/product/product.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 import { RouterModule } from '@angular/router';
+
 
 
 
@@ -17,14 +19,17 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     ProductListComponent,
     NavbarComponent,
-    ProductComponent
+    ProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path:'login',component:LoginComponent},
       {path:'products',component:ProductListComponent},
-      {path:'product/:productId', component:ProductComponent}
+      {path:'product/:productId', component:ProductComponent},
+      {path:'addProduct',component:AddProductComponent},
+      {path:'editProduct', component:AddProductComponent}
     ])
   ],
   providers: [],

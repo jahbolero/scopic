@@ -1,0 +1,26 @@
+<div class="container">
+    <div *ngIf="isAdd; else showThis">
+        <div class="row">
+            <div class="col-md-8">
+              <img class="img-fluid" [src]="imgUrl" width="400" height="300" alt="">
+            </div>
+            <div class="col-md-4">
+              <label c for="project-name">Project Name</label>
+              <input type="text" id="project-name" class="form-control">
+              <label for="project-name">Auction expiry date</label>
+              <input type="datetime-local" class="form-control">
+              <label>Upload Image</label>
+              <input #file type="file" (change)=imagePreview(file.files)>
+              <label>Product Description</label>
+              <textarea class="description-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</textarea>
+              <button type="button" class="btn btn-info w-100">Save Product</button>
+            </div>
+      </div>
+    </div>
+
+    <ng-template #showThis>      
+        <div>Another magic element!</div>
+    </ng-template>
+
+</div>
+
