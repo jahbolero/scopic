@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using scopic_test_server.Data;
 using scopic_test_server.DTO;
+using static scopic_test_server.Helper.Codes;
 
 namespace scopic_test_server.Interface
 {
     public interface IBidRepository
     {
-        IEnumerable<Bid> GetAllBids(Guid ProductId);
-        Bid AddBid(BidCreateDto Bid);
+        IEnumerable<Bid> GetBidsByProduct(Guid ProductId);
+        BidCode AddBid(BidCreateDto Bid);
     }
 }

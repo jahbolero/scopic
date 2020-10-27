@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "5Zmsl4+MdtoQ6xMsaKRthQb+wAJETquQ/2jFfTh8yZOklF+ncw1bNeXEGtUWaRS2CEPG0uRRIU+xwQIOKNf6rA==",
+  "dgSpecHash": "QXY7oP5QWNJ09sF1n5gRcc70bx1TPYfKswRDwOWfQyBNIDyLY2+4SFQ4u4EhC1TiSlPtb31vKUQPE1BgWvtmeQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\scopic-test-server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\skandinavisk\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\skandinavisk\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
+    "C:\\Users\\skandinavisk\\.nuget\\packages\\awssdk.core\\3.5.1.30\\awssdk.core.3.5.1.30.nupkg.sha512",
+    "C:\\Users\\skandinavisk\\.nuget\\packages\\awssdk.s3\\3.5.3.8\\awssdk.s3.3.5.3.8.nupkg.sha512",
     "C:\\Users\\skandinavisk\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\skandinavisk\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\skandinavisk\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

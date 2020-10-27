@@ -29,6 +29,27 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "AWSSDK.Core/3.5.1.30": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.5.3.8": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.5.1.30, 3.6.0)"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -1534,6 +1555,64 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "AWSSDK.Core/3.5.1.30": {
+      "sha512": "kNqzY/py4pDlW9aPn2SpnG7y7Mr4Z0jg/BdkHiRr9WLt7k/lwGMmJ5hd3x/ZHDkv8kIdjllkVrrhYkXvj6AkCA==",
+      "type": "package",
+      "path": "awssdk.core/3.5.1.30",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.5.1.30.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netcoreapp3.1/AWSSDK.Core.dll",
+        "lib/netcoreapp3.1/AWSSDK.Core.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Core.xml",
+        "lib/netstandard1.3/AWSSDK.Core.dll",
+        "lib/netstandard1.3/AWSSDK.Core.pdb",
+        "lib/netstandard1.3/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.S3/3.5.3.8": {
+      "sha512": "7veYJ94CQa9crtwteCO4bNWYq1GH3l+0rubV2Ku1RnE0C+0tlTGnreC8XbrozO1S+m1K0ZKsyiKndIKcxCeOaQ==",
+      "type": "package",
+      "path": "awssdk.s3/3.5.3.8",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
+        "awssdk.s3.3.5.3.8.nupkg.sha512",
+        "awssdk.s3.nuspec",
+        "lib/net35/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.pdb",
+        "lib/net35/AWSSDK.S3.xml",
+        "lib/net45/AWSSDK.S3.dll",
+        "lib/net45/AWSSDK.S3.pdb",
+        "lib/net45/AWSSDK.S3.xml",
+        "lib/netcoreapp3.1/AWSSDK.S3.dll",
+        "lib/netcoreapp3.1/AWSSDK.S3.pdb",
+        "lib/netcoreapp3.1/AWSSDK.S3.xml",
+        "lib/netstandard1.3/AWSSDK.S3.dll",
+        "lib/netstandard1.3/AWSSDK.S3.pdb",
+        "lib/netstandard1.3/AWSSDK.S3.xml",
+        "lib/netstandard2.0/AWSSDK.S3.dll",
+        "lib/netstandard2.0/AWSSDK.S3.pdb",
+        "lib/netstandard2.0/AWSSDK.S3.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -5733,6 +5812,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "AWSSDK.Core >= 3.5.1.30",
+      "AWSSDK.S3 >= 3.5.3.8",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.0.1",
       "Microsoft.EntityFrameworkCore >= 3.1.7",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.7",
@@ -5747,11 +5828,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\scopic-test-server.csproj",
+      "projectUniqueName": "C:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\scopic-test-server.csproj",
       "projectName": "scopic-test-server",
-      "projectPath": "c:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\scopic-test-server.csproj",
+      "projectPath": "C:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\scopic-test-server.csproj",
       "packagesPath": "C:\\Users\\skandinavisk\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\obj\\",
+      "outputPath": "C:\\Users\\skandinavisk\\Documents\\Others\\Repository\\scopic\\scopic-test-server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -5783,6 +5864,14 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "AWSSDK.Core": {
+            "target": "Package",
+            "version": "[3.5.1.30, )"
+          },
+          "AWSSDK.S3": {
+            "target": "Package",
+            "version": "[3.5.3.8, )"
+          },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[8.0.1, )"

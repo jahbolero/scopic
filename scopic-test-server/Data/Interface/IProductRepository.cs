@@ -7,7 +7,7 @@ namespace scopic_test_server.Interface
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetAllProducts(int Page, int Role, bool? Sort, string SearchString);
+        IEnumerable<Product> GetAllProducts(int Page, bool? Sort, string SearchString);
         Product GetProduct(Guid ProductId);
         Product AddProduct(ProductCreateDto Product);
 

@@ -24,6 +24,8 @@
     ".NETCoreApp,Version=v3.1": {
       "scopic-test-server/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.5.1.30",
+          "AWSSDK.S3": "3.5.3.8",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.0.1",
           "Microsoft.EntityFrameworkCore": "3.1.7",
           "Microsoft.EntityFrameworkCore.Design": "3.1.7",
@@ -334,6 +336,31 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.5.1.30": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.1.30"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.5.3.8": {
+        "dependencies": {
+          "AWSSDK.Core": "3.5.1.30"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.3.8"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -3054,6 +3081,20 @@
       "sha512": "sha512-hhUzmc8Ld7wCuVHJFodsxtPmFqBAhB6nUNQUgaMF3uamQdxOLxntG0dwv+5ApC67GABa8Oay8MEYGg5IgVZP1Q==",
       "path": "automapper.extensions.microsoft.dependencyinjection/8.0.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.5.1.30": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kNqzY/py4pDlW9aPn2SpnG7y7Mr4Z0jg/BdkHiRr9WLt7k/lwGMmJ5hd3x/ZHDkv8kIdjllkVrrhYkXvj6AkCA==",
+      "path": "awssdk.core/3.5.1.30",
+      "hashPath": "awssdk.core.3.5.1.30.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.5.3.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7veYJ94CQa9crtwteCO4bNWYq1GH3l+0rubV2Ku1RnE0C+0tlTGnreC8XbrozO1S+m1K0ZKsyiKndIKcxCeOaQ==",
+      "path": "awssdk.s3/3.5.3.8",
+      "hashPath": "awssdk.s3.3.5.3.8.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

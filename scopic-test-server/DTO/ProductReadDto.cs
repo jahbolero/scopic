@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace scopic_test_server.DTO
 {
@@ -10,5 +11,6 @@ namespace scopic_test_server.DTO
         public string ImgUrl { get; set; }
         public DateTime ExpiryDate { get; set; }
         public DateTime UploadDate { get; set; }
+        public IEnumerable<BidReadDto> Bids { get; set; }
     }
 }

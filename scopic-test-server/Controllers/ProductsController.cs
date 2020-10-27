@@ -23,14 +23,14 @@ namespace scopic_test_server
         }
         //GET api/products/
         [HttpGet]
-        public ActionResult<List<ProductReadDto>> GetAllProducts(int Page, int Role, bool? Sort, string SearchString)
+        public ActionResult<List<ProductReadDto>> GetAllProducts([FromQuery] int Page, [FromQuery] bool? Sort, [FromQuery] string SearchString)
         {
-            var result = _repository.GetAllProducts(Page, Role, Sort, SearchString);
+            var result = _repository.GetAllProducts(Page, Sort, SearchString);
             return Ok(_mapper.Map<List<ProductReadDto>>(result.ToList()));
         }
         //GET api/products/
         [HttpGet]
-        [Route("{id}")]
+        [Route("{ProductId}")]
         public ActionResult<ProductReadDto> GetProduct(Guid ProductId)
         {
             var result = _repository.GetProduct(ProductId);
