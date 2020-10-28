@@ -5,6 +5,9 @@ using System.Linq;
 using scopic_test_server.DTO;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using scopic_test_server.Helper;
+using System.IO;
+using static scopic_test_server.Helper.Codes;
 
 namespace scopic_test_server.Data
 {
@@ -12,11 +15,13 @@ namespace scopic_test_server.Data
     {
         private readonly ScopicContext _context;
         private readonly IMapper _mapper;
+        private readonly S3UploadImage _S3UploadeImage;
+
         public ProductRepository(ScopicContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-
+            _S3UploadeImage = new S3UploadImage();
         }
         public IEnumerable<Product> GetAllProducts(int Page, bool? Sort, string SearchString)//Sort asc = true, desc = false
         {
@@ -38,23 +43,22 @@ namespace scopic_test_server.Data
 
         public Product GetProduct(Guid ProductId)
         {
-            var product = _context.Product.FirstOrDefault(x => x.ProductId == ProductId);
+            var product = _context.Product.Include(x => x.Bids).Include("Bids.User").FirstOrDefault(y => y.ProductId == ProductId);
             return product;
         }
-        public Product AddProduct(ProductCreateDto Product)
+        public ProductCode AddProduct(ProductCreateDto Product)
         {
+            if (DateTime.UtcNow > Product.ExpiryDate)
+                return ProductCode.InvalidDate;
+
             Product.UploadDate = DateTime.UtcNow;
-            Product.ImgUrl = UploadImage("Image Location");
             var product = _mapper.Map<Product>(Product);
             product.ProductId = Guid.NewGuid();
+            product.ImgUrl = $"{product.ProductId}{Path.GetExtension(Product.ImgFile.FileName)}";
+            _S3UploadeImage.UploadFileAsync(Product.ImgFile, product.ImgUrl).Wait();
             _context.Product.Add(product);
             _context.SaveChanges();
-            return product;
-        }
-
-        public string UploadImage(string imageFile)
-        {
-            return imageFile;
+            return ProductCode.Success;
         }
     }
 }

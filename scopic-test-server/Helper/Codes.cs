@@ -14,6 +14,13 @@ namespace scopic_test_server.Helper
             [Description("Something went wrong. Please try again.")]
             Null,//
         }
+
+        public enum ProductCode
+        {
+            Success,
+            [Description("Expiry date time must be set greater than the current date time")]
+            InvalidDate
+        }
     }
 
 }

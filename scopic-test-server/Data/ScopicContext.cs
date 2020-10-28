@@ -10,7 +10,6 @@ namespace scopic_test_server.Data
         }
         public DbSet<Bid> Bid { get; set; }
         public DbSet<Product> Product { get; set; }
-        public DbSet<Session> Session { get; set; }
         public DbSet<User> Users { get; set; }
 
     }

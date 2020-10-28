@@ -63,3 +63,4 @@ C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\
 C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\obj\Debug\netcoreapp3.1\scopic-test-server.csproj.CopyComplete
 C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\AWSSDK.Core.dll
 C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\AWSSDK.S3.dll
+C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using scopic_test_server.DTO;
 using scopic_test_server.Interface;
 using System.Linq;
+using static scopic_test_server.Helper.Codes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace scopic_test_server
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -37,12 +39,15 @@ namespace scopic_test_server
             return Ok(_mapper.Map<ProductReadDto>(result));
         }
         //POST api/products/addProduct
+        [Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("addProduct")]
-        public ActionResult<ProductReadDto> AddProduct([FromForm] ProductCreateDto Product)
+        public ActionResult AddProduct([FromForm] ProductCreateDto Product)
         {
             var result = _repository.AddProduct(Product);
-            return Ok(_mapper.Map<ProductReadDto>(result));
+            if (result != ProductCode.Success)
+                return ValidationProblem(result.GetDescription());
+            return Ok(new { message = "Good Job" });
         }
     }
 

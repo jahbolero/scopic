@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using scopic_test_server.Data;
 using scopic_test_server.DTO;
@@ -10,6 +11,7 @@ using static scopic_test_server.Helper.Codes;
 
 namespace scopic_test_server
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BidsController : ControllerBase
@@ -21,7 +23,6 @@ namespace scopic_test_server
             _repository = repository;
             _mapper = mapper;
         }
-
         [HttpGet]
         [Route("getBidsByProduct/{ProductId}")]
         public ActionResult<IEnumerable<BidReadDto>> GetBidsByProduct(Guid ProductId)
@@ -29,7 +30,7 @@ namespace scopic_test_server
             var result = _repository.GetBidsByProduct(ProductId);
             return Ok(_mapper.Map<IEnumerable<BidReadDto>>(result));
         }
-
+        [Authorize(Roles = Role.User)]
         [HttpPost]
         [Route("addBid")]
         public ActionResult AddBid(BidCreateDto Bid)

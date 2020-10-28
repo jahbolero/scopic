@@ -10,5 +10,6 @@ public class Profiler : Profile
         CreateMap<Bid, BidReadDto>();
         CreateMap<BidCreateDto, Bid>();
         CreateMap<ProductCreateDto, Product>();
+        CreateMap<User, UserDto>();
     }
 }
