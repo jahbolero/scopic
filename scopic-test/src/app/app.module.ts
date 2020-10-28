@@ -4,11 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {LoginComponent} from './components/login/login.component'
 import {ProductListComponent} from './components/product-list/product-list.component'
-
+import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductComponent } from './components/product/product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AuthInterceptor } from './helpers/auth.interceptor';
+import { CountdownModule } from 'ngx-countdown';
+import { TimerValuePipe } from './pipes/timer-value.pipe';
 
 
 
@@ -20,19 +25,19 @@ import { RouterModule } from '@angular/router';
     ProductListComponent,
     NavbarComponent,
     ProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    AdminDashboardComponent,
+    TimerValuePipe,
+
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      {path:'login',component:LoginComponent},
-      {path:'products',component:ProductListComponent},
-      {path:'product/:productId', component:ProductComponent},
-      {path:'addProduct',component:AddProductComponent},
-      {path:'editProduct', component:AddProductComponent}
-    ])
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    CountdownModule
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,33 +1,53 @@
 <!-- Page Content -->
 <div class="container">
+  <div  *ngIf="product != null">
     <div class="row">
           <div class="col-md-8">
-            <img class="img-fluid" src="http://placehold.it/750x500" width="750" height="500" alt="">
+            <img class="img-fluid" [src]="product.imgUrl" width="550" height="350" alt="">
           </div>
           <div class="col-md-4">
-            <h3 class="my-3">Project Name</h3>
+            <h3 class="my-3">{{product.productName}}</h3>
             <span>Time Left:<span class="text-danger">$500</span></span>
             <br>
-            <span>Highest Bid:<span class="text-success">$500</span></span>
+            <span>Highest Bid:<span class="text-success">${{product.bids.length == 0 ? "0":getHighestBid(product.bids).bidAmount}}</span></span>
             <h5>Produc Description</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-            <input type="number" class="form-control">
-            <button type="button" class="btn btn-info w-100">Submit Bid</button>
+            <p>{{product.productDescription}}</p>
+            <form [formGroup]="bidForm" (ngSubmit)="submitBid()">
+            <input type="number" formControlName="bidAmount" class="form-control">
+            <button type="submit" class="btn btn-info w-100">Submit Bid</button>
+            
+            <div *ngIf="bidAmount.invalid && (bidAmount.dirty || bidAmount.touched)"
+            class="alert alert-danger">
+
+              <div *ngIf="bidAmount.errors.required">
+                Amount is required.
+              </div>
+              <div *ngIf="bidAmount.errors.min">
+               Amount can't be less than 0
+              </div>
+            </div>
+            <div *ngIf="error"  class="alert alert-danger">
+              {{error}}
+            </div>
+            <div *ngIf="success"  class="success alert-success">
+              {{success}}
+            </div>
+
+          </form>
           </div>
     </div>
     <br>
-
     <div class="row">
         <table class="table" style="width:100%">
             <tr>
               <th>Bid Date</th>
               <th>Bid Amount</th>
             </tr>
-            <tr>
-              <td>Jill</td>
-              <td>Smith</td>
+            <tr *ngFor="let bid of product.bids">
+              <td>{{convertToLocalTime(bid.bidDate) | date:'medium'}}</td>
+              <td>${{bid.bidAmount}}</td>
             </tr>
           </table>
     </div>
-
+  </div>
   </div>
