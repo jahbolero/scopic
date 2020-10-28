@@ -7,7 +7,9 @@
           </div>
           <div class="col-md-4">
             <h3 class="my-3">{{product.productName}}</h3>
-            <span>Time Left:<span class="text-danger">$500</span></span>
+            <span>Time Left:<span class="text-danger">  <span>
+              <countdown [config]="{leftTime: product.expiryDate | timerValue, template: '$!d!d $!h!h $!m!m $!s!s'}"></countdown>
+            </span></span></span>
             <br>
             <span>Highest Bid:<span class="text-success">${{product.bids.length == 0 ? "0":getHighestBid(product.bids).bidAmount}}</span></span>
             <h5>Produc Description</h5>
@@ -44,7 +46,7 @@
               <th>Bid Amount</th>
             </tr>
             <tr *ngFor="let bid of product.bids">
-              <td>{{convertToLocalTime(bid.bidDate) | date:'medium'}}</td>
+              <td>{{bid.bidDate | toLocal | date:'medium'}}</td>
               <td>${{bid.bidAmount}}</td>
             </tr>
           </table>

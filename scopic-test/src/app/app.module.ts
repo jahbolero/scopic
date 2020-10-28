@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductComponent } from './components/product/product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { CountdownModule } from 'ngx-countdown';
 import { TimerValuePipe } from './pipes/timer-value.pipe';
+import { HighestBidPipe } from './pipes/highest-bid.pipe';
+import { ToLocalTimePipe } from './pipes/to-local-time.pipe';
 
 
 
@@ -28,11 +30,14 @@ import { TimerValuePipe } from './pipes/timer-value.pipe';
     AddProductComponent,
     AdminDashboardComponent,
     TimerValuePipe,
+    HighestBidPipe,
+    ToLocalTimePipe,
 
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule ,
     HttpClientModule,
     AppRoutingModule,
     CountdownModule

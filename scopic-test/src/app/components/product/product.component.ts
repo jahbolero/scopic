@@ -53,5 +53,4 @@ export class ProductComponent implements OnInit {
   }
   get bidAmount(){return this.bidForm.get("bidAmount")}
   convertToLocalTime = ConvertToLocalTime;
-  getHighestBid = GetHighestBid;
 }

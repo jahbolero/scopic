@@ -13,10 +13,3 @@ import { Bid } from '../models/bid';
         return newDate;
       }
 
-      export function GetDateDifferenceInSeconds(date:Date){
-        console.log("WEW")
-        var expiryDate = ConvertToLocalTime(date);
-        // var currentDate = new Date();
-        var seconds = (expiryDate.getTime() / 1000);
-        return seconds;
-      }

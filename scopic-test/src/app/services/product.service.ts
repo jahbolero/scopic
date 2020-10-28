@@ -13,13 +13,15 @@ export class ProductService {
 
    }
    public GetProducts(page?:string,searchString?:string, sort?:string):Observable<any>{
-    
     let params = new HttpParams().set("Page",page).set("SearchString", searchString).set("Sort",sort); //Create new HttpParams
     return this.http.get<any>(`${environment.apiUrl}/Products/`,{params})
    }
 
    public GetProductById(productId:string){
    return this.http.get<any>(`${environment.apiUrl}/Products/${productId}`)
+   }
+   public DeleteProduct(productId:string){
+    return this.http.delete<any>(`${environment.apiUrl}/Products/${productId}`)
    }
   
 }
