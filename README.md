@@ -28,6 +28,9 @@ Please make sure port 5000 is not in use.
 ## Credentials
 There are 2 user types, *User* and *Admin*.
 `(User)user:user`
+
 `(User)user1:user1`
+
 `(User)user2:user2`
+
 `(Admin)admin:admin`
