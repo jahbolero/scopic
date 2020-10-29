@@ -27,10 +27,11 @@ Please make sure port 5000 is not in use.
 
 ## Credentials
 There are 2 user types, *User* and *Admin*.
-`(User)user:user`
 
-`(User)user1:user1`
+`(User)username:user|password:user`
 
-`(User)user2:user2`
+`(User)username:user1|password:user1`
 
-`(Admin)admin:admin`
+`(User)username:user2|password:user2`
+
+`(Admin)username:user3|password:user3`
