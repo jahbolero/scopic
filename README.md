@@ -14,7 +14,7 @@ This project is a auction app built as a test task technical assessment.
 ## Api
 1.`$cd scopic-test-server`
 
-2. `$dotnet restore`
+2.`$dotnet restore`
 
 3.`$dotnet run`
 *Note: Please make sure port 5000 is not in use.*
@@ -31,7 +31,7 @@ This project is a auction app built as a test task technical assessment.
 
 ## Credentials
 There are 2 user types, *User* and *Admin*.
-r
+
 `(User)username:user|password:user`
 
 `(User)username:user1|password:user1`
