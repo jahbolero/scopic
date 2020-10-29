@@ -53,8 +53,6 @@ namespace scopic_test_server.Data
         {
             if (DateTime.UtcNow > Product.ExpiryDate)
                 return ProductCode.InvalidDate;
-
-
             Product.UploadDate = DateTime.UtcNow;
             var product = _mapper.Map<Product>(Product);
             product.ProductId = Guid.NewGuid();

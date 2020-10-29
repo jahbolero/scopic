@@ -3,7 +3,7 @@
   <div  *ngIf="product != null">
     <div class="row" *ngIf="product">
           <div class="col-md-8">
-            <img class="img-fluid" [src]="product.imgUrl" width="550" height="350" alt="">
+            <img class="img-fluid" [src]="product.imgUrl|unchacheDate" width="550" height="350" alt="">
           </div>
           <div class="col-md-4">
             <h3 class="my-3">{{product.productName}}</h3>

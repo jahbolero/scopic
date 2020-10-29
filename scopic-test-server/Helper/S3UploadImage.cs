@@ -20,7 +20,6 @@ namespace scopic_test_server.Helper
         {
             try
             {
-
                 var AccessKey = "AKIAXBBRIYPVW4AC4E5L";
                 var SecretKey = "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";
                 var credentials = new BasicAWSCredentials(AccessKey, SecretKey);
@@ -31,7 +30,6 @@ namespace scopic_test_server.Helper
                 using var client = new AmazonS3Client(credentials, config);
                 await using var newMemoryStream = new MemoryStream();
                 file.CopyTo(newMemoryStream);
-
                 var uploadRequest = new TransferUtilityUploadRequest
                 {
                     InputStream = newMemoryStream,
@@ -39,7 +37,6 @@ namespace scopic_test_server.Helper
                     BucketName = bucketName,
                     CannedACL = S3CannedACL.PublicRead
                 };
-
                 var fileTransferUtility = new TransferUtility(client);
                 await fileTransferUtility.UploadAsync(uploadRequest);
             }
@@ -51,7 +48,6 @@ namespace scopic_test_server.Helper
             {
                 throw new System.Exception("Unknown encountered on server. Message:'{0}' when writing an object", e);
             }
-
         }
     }
 }
