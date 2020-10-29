@@ -1,11 +1,10 @@
 # Auction App
 This project is a auction app built as a test task technical assessment.
 # Prerequisite
-This project uses .net core 3.1.7 and Angular 10.2.
-Follow insturctions here for .net core https://dotnet.microsoft.com/download.
-Download and install both SDK and Runtime.
+* This project uses .net core 3.1.7 and Angular 10.2.
+* Follow insturctions here for .net core https://dotnet.microsoft.com/download. Download and install both SDK and Runtime for .net core .
 
-For angular, run the following command `npm install -g @angular/cli`.
+* For angular, run the following command `npm install -g @angular/cli`.
 
 # Getting started
 
