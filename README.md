@@ -24,3 +24,10 @@ Please make sure port 5000 is not in use.
 3.`ng serve`
 
 4.Access the client at `localhost:4200`
+
+## Credentials
+There are 2 user types, *User* and *Admin*.
+`(User)user:user`
+`(User)user1:user1`
+`(User)user2:user2`
+`(Admin)admin:admin`
