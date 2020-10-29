@@ -1,7 +1,7 @@
 # Auction App
 This project is a auction app built as a test task technical assessment.
 # Prerequisite
-* This project uses .net core 3.1.7 Angular 10.2, and Node 1.7.0 .
+* This project uses .net core 3.1.7 Angular 10.2, and Node 12.7.0 .
 
 * **Node.js** (https://nodejs.org/en/download/)
 
