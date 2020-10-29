@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  error:boolean =false;
   constructor( private formBuilder: FormBuilder,private authService:AuthService, private router:Router) { 
   }
 
@@ -32,11 +33,12 @@ export class LoginComponent implements OnInit {
         if(response.role == Role.Admin){
           this.router.navigate(['/admin'])
         }else if(response.role == Role.User){
+          this.error = false;
           this.router.navigate(['/products'])
         }        
       },
       error=>{
-        console.log(error);
+        this.error = true;
       })
     }
   }
