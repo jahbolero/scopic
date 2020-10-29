@@ -37,7 +37,6 @@ namespace scopic_test_server
             var userId = HttpContext.User.Identity.Name;
             Bid.UserId = Guid.Parse(userId);
             var result = _repository.AddBid(Bid);
-
             if (result != BidCode.Success)
                 return BadRequest(result.GetDescription());
             return Ok(new { message = result.GetDescription() });

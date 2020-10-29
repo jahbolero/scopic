@@ -18,16 +18,10 @@ namespace scopic_test_server.Data
                 return null;
 
             var user = _context.Users.SingleOrDefault(x => x.Username == username);
-
-            // check if username exists
             if (user == null)
                 return null;
-
-            // check if password is correct
             if (password != user.Password)
                 return null;
-
-            // authentication successful
             return user;
         }
 

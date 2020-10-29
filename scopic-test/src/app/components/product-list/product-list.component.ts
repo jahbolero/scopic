@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Bid } from 'src/app/models/bid';
 import { Product } from 'src/app/models/product';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
