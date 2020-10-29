@@ -16,6 +16,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { TimerValuePipe } from './pipes/timer-value.pipe';
 import { HighestBidPipe } from './pipes/highest-bid.pipe';
 import { ToLocalTimePipe } from './pipes/to-local-time.pipe';
+import { DateTransformPipe } from './pipes/date-transform.pipe'
 
 
 
@@ -32,6 +33,7 @@ import { ToLocalTimePipe } from './pipes/to-local-time.pipe';
     TimerValuePipe,
     HighestBidPipe,
     ToLocalTimePipe,
+    DateTransformPipe,
 
   ],
   imports: [

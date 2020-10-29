@@ -35,7 +35,6 @@ export class ProductListComponent implements OnInit {
     this.refreshPagination();
     console.log(this.searchString);
     this.getProducts();
-
   }
   sortProducts(){
   this.sort = this.sort ==""? "ASC":this.sort=="ASC"?"DESC":"ASC";

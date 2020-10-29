@@ -24,6 +24,20 @@
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
               <hr class="my-4">
               </form>
+              <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+              
+                <div *ngIf="username.errors.required">
+                  Username is required
+                </div>
+                
+              </div>
+              <div *ngIf="password.invalid && (username.dirty || password.touched)" class="alert alert-danger">
+              
+                <div *ngIf="password.errors.required">
+                  Password is required
+                </div>
+                
+              </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <!-- Page Content -->
 <div class="container">
   <div  *ngIf="product != null">
-    <div class="row">
+    <div class="row" *ngIf="product">
           <div class="col-md-8">
             <img class="img-fluid" [src]="product.imgUrl" width="550" height="350" alt="">
           </div>
@@ -11,14 +11,14 @@
               <countdown [config]="{leftTime: product.expiryDate | timerValue, template: '$!d!d $!h!h $!m!m $!s!s'}"></countdown>
             </span></span></span>
             <br>
-            <span>Highest Bid:<span class="text-success">${{product.bids.length == 0 ? "0":getHighestBid(product.bids).bidAmount}}</span></span>
+            <span>Highest Bid:<span class="text-success">${{product.bids.length == 0 ? "0":product.bids| highestBid}}</span></span>
             <h5>Produc Description</h5>
             <p>{{product.productDescription}}</p>
-            <form [formGroup]="bidForm" (ngSubmit)="submitBid()">
+            <form *ngIf="(product.expiryDate | timerValue) >=0 " [formGroup]="bidForm" (ngSubmit)="submitBid()">
             <input type="number" formControlName="bidAmount" class="form-control">
-            <button type="submit" class="btn btn-info w-100">Submit Bid</button>
+            <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Submit Bid</button>
             
-            <div *ngIf="bidAmount.invalid && (bidAmount.dirty || bidAmount.touched)"
+            <div *ngIf="bidForm.invalid && (bidAmount.dirty || bidAmount.touched)"
             class="alert alert-danger">
 
               <div *ngIf="bidAmount.errors.required">
@@ -46,7 +46,7 @@
               <th>Bid Amount</th>
             </tr>
             <tr *ngFor="let bid of product.bids">
-              <td>{{bid.bidDate | toLocal | date:'medium'}}</td>
+              <td>{{bid.bidDate | toLocalTime | date:'medium'}}</td>
               <td>${{bid.bidAmount}}</td>
             </tr>
           </table>

@@ -1,28 +1,84 @@
 <div class="container">
-    <div *ngIf="isAdd; else showThis">
+    <div *ngIf="!product; else showThis">
         <div class="row">
             <div class="col-md-8">
               <img class="img-fluid" [src]="imgUrl" width="400" height="300" alt="">
             </div>
             <div class="col-md-4">
-              <form [formGroup]="addProductForm" (ngSubmit)="addProduct">
+              <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
               <label c for="productName">Product Name</label>
               <input type="text" id="productName" formControlName="productName" class="form-control">
               <label for="expiryDate">Auction expiry date</label>
               <input type="datetime-local" id="expiryDate" formControlName="expiryDate" class="form-control">
               <label>Upload Image</label>
-              <input #file type="file" formControlName="imageFile" (change)=imagePreview(file.files)>
+              <input #file type="file" (change)=imagePreview(file.files)>
               <label>Product Description</label>
-              <textarea formControlName="productDescription" class="description-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</textarea>
-              <button type="button" class="btn btn-info w-100">Save Product</button>
+              <textarea formControlName="productDescription" class="description-box"></textarea>
+              <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Save Changes</button>
             </form>
             </div>
       </div>
     </div>
-
     <ng-template #showThis>      
-        <div>Another magic element!</div>
+      <div class="row">
+        <div class="col-md-8">
+          <img class="img-fluid" [src]="imgUrl == null?(product.imgUrl|unchacheDate):imgUrl" width="400" height="300" alt="">
+        </div>
+        <div class="col-md-4">
+          <form [formGroup]="addProductForm" (ngSubmit)="editProduct()">
+          <label c for="productName">Product Name</label>
+          <input type="text" id="productName" [(ngModel)]="product.productName" formControlName="productName" class="form-control">
+          <label for="expiryDate">Auction expiry date</label>
+          <input type="datetime-local" id="expiryDate" [(ngModel)]="product.expiryDate" formControlName="expiryDate" class="form-control">
+          <label>Upload Image</label>
+          <input #file type="file" (change)=imagePreview(file.files)>
+          <label>Product Description</label>
+          <textarea formControlName="productDescription" [(ngModel)]="product.productDescription" class="description-box"></textarea>
+          <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Save Changes</button>
+        </form>
+        </div>
+  </div>
     </ng-template>
+    <div class=row text-center>
+      <div class="col-md-4 offset-md-8 text-center">
+        <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="alert alert-danger">
+              
+              <div *ngIf="productName.errors.required">
+                Product name is required
+              </div>
+              <div *ngIf="productName.errors.minlength">
+                Minimum of 5 characters for name.
+              </div>
+              <div *ngIf="productName.errors.maxlength">
+                Maximum of 30 characters for name.
+              </div>
+        </div>
+        <div *ngIf="productDescription.invalid && (productDescription.dirty || productDescription.touched)" class="alert alert-danger">
+              
+          <div *ngIf="productDescription.errors.required">
+            Product Description is required
+          </div>
+          <div *ngIf="productDescription.errors.minlength">
+            Minimum of 5 characters for description.
+          </div>
+          <div *ngIf="productDescription.errors.maxlength">
+            Maximum of 200 characters for description.
+          </div>
+        </div>
+        <div *ngIf="expiryDate.invalid && (expiryDate.dirty || expiryDate.touched)" class="alert alert-danger">
+              
+          <div *ngIf="expiryDate.errors.required">
+            Expiry date is required
+          </div>
+        </div>
+        <div *ngIf="error"  class="alert alert-danger">
+          {{error}}
+        </div>
+        <div *ngIf="success"  class="alert alert-success">
+          {{success}}
+        </div>
+      </div>
+    </div>
 
 </div>
 

@@ -23,5 +23,12 @@ export class ProductService {
    public DeleteProduct(productId:string){
     return this.http.delete<any>(`${environment.apiUrl}/Products/${productId}`)
    }
+   public AddProduct(product:FormData){
+    return this.http.post<any>(`${environment.apiUrl}/Products/addProduct`,product);
+   }
+   public EditProduct(product:FormData){
+    console.log(product);
+   return this.http.post<any>(`${environment.apiUrl}/Products/editProduct`,product);
+  }
   
 }
