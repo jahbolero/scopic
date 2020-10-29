@@ -34,4 +34,4 @@ There are 2 user types, *User* and *Admin*.
 
 `(User)username:user2|password:user2`
 
-`(Admin)username:user3|password:user3`
+`(Admin)username:admin|password:admin`
