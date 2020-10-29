@@ -1,10 +1,8 @@
-
 using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using scopic_test_server.Data;
 using scopic_test_server.DTO;
 using scopic_test_server.Interface;
 using static scopic_test_server.Helper.Codes;
@@ -18,6 +16,7 @@ namespace scopic_test_server
     {
         private readonly IBidRepository _repository;
         private readonly IMapper _mapper;
+
         public BidsController(IBidRepository repository, IMapper mapper)
         {
             _repository = repository;
@@ -35,12 +34,13 @@ namespace scopic_test_server
         [Route("addBid")]
         public ActionResult AddBid(BidCreateDto Bid)
         {
-
+            var userId = HttpContext.User.Identity.Name;
+            Bid.UserId = Guid.Parse(userId);
             var result = _repository.AddBid(Bid);
 
             if (result != BidCode.Success)
-                return ValidationProblem(result.GetDescription());
-            return Ok(result.GetDescription());
+                return BadRequest(result.GetDescription());
+            return Ok(new { message = result.GetDescription() });
         }
     }
 

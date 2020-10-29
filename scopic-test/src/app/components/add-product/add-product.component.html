@@ -14,7 +14,7 @@
               <input #file type="file" (change)=imagePreview(file.files)>
               <label>Product Description</label>
               <textarea formControlName="productDescription" class="description-box"></textarea>
-              <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Save Changes</button>
+              <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Add Product</button>
             </form>
             </div>
       </div>
@@ -29,7 +29,9 @@
           <label c for="productName">Product Name</label>
           <input type="text" id="productName" [(ngModel)]="product.productName" formControlName="productName" class="form-control">
           <label for="expiryDate">Auction expiry date</label>
-          <input type="datetime-local" id="expiryDate" [(ngModel)]="product.expiryDate" formControlName="expiryDate" class="form-control">
+          <!-- <input [ngModel]="item.value | useMyPipeToFormatThatValue" 
+      (ngModelChange)="item.value=$event" name="inputField" type="text" /> -->
+          <input type="datetime-local" id="expiryDate" [ngModel]="product.expiryDate | toLocalTime |date:'y-MM-dTH:mm'"  formControlName="expiryDate" class="form-control">
           <label>Upload Image</label>
           <input #file type="file" (change)=imagePreview(file.files)>
           <label>Product Description</label>

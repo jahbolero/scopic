@@ -25,7 +25,7 @@ namespace scopic_test_server
         }
         //GET api/products/
         [HttpGet]
-        public ActionResult<List<ProductReadDto>> GetAllProducts([FromQuery] int Page, [FromQuery] bool? Sort, [FromQuery] string SearchString)
+        public ActionResult<List<ProductReadDto>> GetAllProducts([FromQuery] int Page, [FromQuery] string Sort, [FromQuery] string SearchString)
         {
             var result = _repository.GetAllProducts(Page, Sort, SearchString);
             return Ok(_mapper.Map<List<ProductReadDto>>(result.ToList()));
@@ -36,6 +36,7 @@ namespace scopic_test_server
         public ActionResult<ProductReadDto> GetProduct(Guid ProductId)
         {
             var result = _repository.GetProduct(ProductId);
+            result.Bids = result.Bids.OrderByDescending(x => x.BidAmount);
             return Ok(_mapper.Map<ProductReadDto>(result));
         }
         //POST api/products/addProduct
@@ -44,10 +45,32 @@ namespace scopic_test_server
         [Route("addProduct")]
         public ActionResult AddProduct([FromForm] ProductCreateDto Product)
         {
+            Product.ExpiryDate = Product.ExpiryDate.ToUniversalTime();
             var result = _repository.AddProduct(Product);
             if (result != ProductCode.Success)
+                return BadRequest(result.GetDescription());
+            return Ok(new { message = result.GetDescription() });
+        }
+        [Authorize(Roles = Role.Admin)]
+        [HttpDelete]
+        [Route("{productId}")]
+        public ActionResult DeleteProduct(Guid ProductId)
+        {
+            var result = _repository.DeleteProduct(ProductId);
+            if (result == false)
+                return BadRequest("Something went wrong.");
+            return Ok();
+        }
+        [Authorize(Roles = Role.Admin)]
+        [HttpPost]
+        [Route("editProduct")]
+        public ActionResult EditProduct([FromForm] ProductUpdateDto Product)
+        {
+            Product.ExpiryDate = Product.ExpiryDate.ToUniversalTime();
+            var result = _repository.EditProduct(Product);
+            if (result != ProductCode.Success)
                 return ValidationProblem(result.GetDescription());
-            return Ok(new { message = "Good Job" });
+            return Ok(new { message = result.GetDescription() });
         }
     }
 

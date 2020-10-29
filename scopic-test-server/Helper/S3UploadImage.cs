@@ -21,8 +21,8 @@ namespace scopic_test_server.Helper
             try
             {
 
-                var AccessKey = "AKIAXBBRIYPVS3T6AL6Q";
-                var SecretKey = "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";
+                var AccessKey = "AKIAXBBRIYPVW4AC4E5L";
+                var SecretKey = "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";
                 var credentials = new BasicAWSCredentials(AccessKey, SecretKey);
                 var config = new AmazonS3Config
                 {
@@ -35,7 +35,7 @@ namespace scopic_test_server.Helper
                 var uploadRequest = new TransferUtilityUploadRequest
                 {
                     InputStream = newMemoryStream,
-                    Key = $"https://{bucketName}.s3-ap-southeast-1.amazonaws.com/{fileName}",
+                    Key = fileName,
                     BucketName = bucketName,
                     CannedACL = S3CannedACL.PublicRead
                 };

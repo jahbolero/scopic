@@ -44,7 +44,7 @@ namespace scopic_test_server
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes("SECRETSTRINGAUTH");
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -87,6 +87,10 @@ namespace scopic_test_server
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
@@ -94,10 +98,6 @@ namespace scopic_test_server
             app.UseRouting();
             app.UseAuthorization();
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
 
 
 

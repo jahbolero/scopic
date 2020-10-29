@@ -35,7 +35,7 @@ namespace scopic_test_server
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("SECRETSTRINGAUTH");
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

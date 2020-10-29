@@ -24,10 +24,11 @@ export class ProductService {
     return this.http.delete<any>(`${environment.apiUrl}/Products/${productId}`)
    }
    public AddProduct(product:FormData){
+     console.log(product.get("expiryDate"));
     return this.http.post<any>(`${environment.apiUrl}/Products/addProduct`,product);
    }
    public EditProduct(product:FormData){
-    console.log(product);
+    console.log(product.get("expiryDate"));
    return this.http.post<any>(`${environment.apiUrl}/Products/editProduct`,product);
   }
   

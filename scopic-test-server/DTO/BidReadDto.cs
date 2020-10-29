@@ -7,7 +7,6 @@ namespace scopic_test_server.DTO
     {
         public decimal BidAmount { get; set; }
         public DateTime BidDate { get; set; }
-        public Guid ProductId { get; set; }
         public Guid UserId { get; set; }
         public UserDto User { get; set; }
     }

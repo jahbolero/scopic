@@ -25,7 +25,7 @@ namespace scopic_test_server.Data
             var bid = _mapper.Map<Bid>(Bid);
             bid.BidDate = DateTime.UtcNow;
             bid.BidId = Guid.NewGuid();
-            var latestBid = _context.Bid.FirstOrDefault(x => x.ProductId == bid.ProductId);
+            var latestBid = _context.Bid.OrderByDescending(x => x.BidAmount).FirstOrDefault(x => x.ProductId == bid.ProductId);
             if (latestBid != null)
             {
                 var product = _context.Product.FirstOrDefault(x => x.ProductId == bid.ProductId);

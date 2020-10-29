@@ -66,9 +66,11 @@ export class AddProductComponent implements OnInit {
       
       this.disabled = true;
       var formData: any = new FormData();
+      var utcDate = new Date(this.addProductForm.value.expiryDate).toISOString();
+      console.log(utcDate);
       formData.append("productName", this.addProductForm.value.productName);
       formData.append("productDescription", this.addProductForm.value.productDescription);
-      formData.append("expiryDate", this.addProductForm.value.expiryDate);
+      formData.append("expiryDate", utcDate);
       formData.append("imgFile", this.addProductForm.value.imageFile);
     this.productService.AddProduct(formData).subscribe(response=>{
       this.router.navigate(['/admin'])
@@ -84,10 +86,11 @@ export class AddProductComponent implements OnInit {
     if(this.addProductForm.valid){
       this.disabled = true;
       var formData: any = new FormData();
+      var utcDate = new Date(this.addProductForm.value.expiryDate).toISOString();
       formData.append("productId",this.product.productId);
       formData.append("productName", this.addProductForm.value.productName);
       formData.append("productDescription", this.addProductForm.value.productDescription);
-      formData.append("expiryDate", this.addProductForm.value.expiryDate);
+      formData.append("expiryDate", utcDate);
       formData.append("imgFile", this.addProductForm.value.imageFile);
     this.productService.EditProduct(formData).subscribe(
       response=>{
