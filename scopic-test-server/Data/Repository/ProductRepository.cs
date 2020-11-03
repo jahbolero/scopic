@@ -18,11 +18,11 @@ namespace scopic_test_server.Data
         private readonly IMapper _mapper;
         private readonly S3UploadImage _S3UploadeImage;
 
-        public ProductRepository(ScopicContext context, IMapper mapper)
+        public ProductRepository(ScopicContext context, IMapper mapper, AppSettings appSettings)
         {
             _context = context;
             _mapper = mapper;
-            _S3UploadeImage = new S3UploadImage();
+            _S3UploadeImage = new S3UploadImage(appSettings);
         }
         public IEnumerable<Product> GetAllProducts(int Page, string Sort, string SearchString)//Sort asc = true, desc = false
         {
@@ -76,12 +76,12 @@ namespace scopic_test_server.Data
 
         public bool DeleteProduct(Guid ProductId)
         {
-            var product = _context.Product.FirstOrDefault();
+            var product = _context.Product.FirstOrDefault(x => x.ProductId == ProductId);
             if (product == null)
                 return false;
             var bids = _context.Bid.Where(x => x.ProductId == product.ProductId);
             _context.Bid.RemoveRange(bids);
-            _context.Product.RemoveRange(product);
+            _context.Product.Remove(product);
             _context.SaveChanges();
             return true;
         }

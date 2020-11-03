@@ -69,7 +69,7 @@ namespace scopic_test_server
             Product.ExpiryDate = Product.ExpiryDate.ToUniversalTime();
             var result = _repository.EditProduct(Product);
             if (result != ProductCode.Success)
-                return ValidationProblem(result.GetDescription());
+                return BadRequest(result.GetDescription());
             return Ok(new { message = result.GetDescription() });
         }
     }

@@ -13,15 +13,17 @@ namespace scopic_test_server.Helper
     public class S3UploadImage
     {
         private const string bucketName = "scopic-bucket";
-        public S3UploadImage()
+        private readonly AppSettings _appSettings;
+        public S3UploadImage(AppSettings appSettings)
         {
+            _appSettings = appSettings;
         }
         public async Task UploadFileAsync(IFormFile file, string fileName)
         {
             try
             {
-                var AccessKey = "AKIAXBBRIYPVW4AC4E5L";
-                var SecretKey = "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";
+                var AccessKey = _appSettings.AwsAccessKey;
+                var SecretKey = _appSettings.AwsSecretKey;
                 var credentials = new BasicAWSCredentials(AccessKey, SecretKey);
                 var config = new AmazonS3Config
                 {

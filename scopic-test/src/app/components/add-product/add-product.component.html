@@ -31,7 +31,7 @@
           <label for="expiryDate">Auction expiry date</label>
           <!-- <input [ngModel]="item.value | useMyPipeToFormatThatValue" 
       (ngModelChange)="item.value=$event" name="inputField" type="text" /> -->
-          <input type="datetime-local" id="expiryDate" [ngModel]="product.expiryDate | toLocalTime |date:'y-MM-dTH:mm'"  formControlName="expiryDate" class="form-control">
+          <input type="datetime-local" id="expiryDate" [ngModel]="product.expiryDate | toLocalTime |date:'y-MM-ddTH:mm'"  formControlName="expiryDate" class="form-control">
           <label>Upload Image</label>
           <input #file type="file" (change)=imagePreview(file.files)>
           <label>Product Description</label>

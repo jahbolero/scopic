@@ -43,6 +43,7 @@ export class ProductListComponent implements OnInit {
   deleteProduct(productId:string){
     this.productService.DeleteProduct(productId).subscribe(response=>{
       this.getProducts();
+      this.products = this.products.filter(product => product.productId != productId)
       this.success = "Successfully Deleted";
       setTimeout(()=>{
       this.success =null;

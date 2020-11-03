@@ -67,7 +67,6 @@ export class AddProductComponent implements OnInit {
       this.disabled = true;
       var formData: any = new FormData();
       var utcDate = new Date(this.addProductForm.value.expiryDate).toISOString();
-      console.log(utcDate);
       formData.append("productName", this.addProductForm.value.productName);
       formData.append("productDescription", this.addProductForm.value.productDescription);
       formData.append("expiryDate", utcDate);
