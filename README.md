@@ -16,7 +16,7 @@ This project is an auction app built as a test task technical assessment.
 
 2.`$dotnet restore`
 
-3.Change the AwsAccessKey and AwsSecretKey inside the appsettings.json file with the credentials found  <a target="_blank" href="https://docs.google.com/document/d/1DCgXtcNs6A3WdPw6M62KuHh7NlIHvUjqIDisu-O4z1s/edit">here</a>
+3.Change the AwsAccessKey and AwsSecretKey inside the appsettings.json file with the credentials found  <a  href="https://docs.google.com/document/d/1DCgXtcNs6A3WdPw6M62KuHh7NlIHvUjqIDisu-O4z1s/edit" target="_blank">here</a>
 
 4.`$dotnet run`
 *Note: Please make sure port 5000 is not in use.*
