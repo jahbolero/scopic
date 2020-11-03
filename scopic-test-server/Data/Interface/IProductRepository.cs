@@ -12,7 +12,8 @@ namespace scopic_test_server.Interface
         Product GetProduct(Guid ProductId);
         ProductCode AddProduct(ProductCreateDto Product);
         bool DeleteProduct(Guid ProductId);
-
         ProductCode EditProduct(ProductUpdateDto Product);
+        IEnumerable<Product> GetExpiredProducts();
+        void ProcessProducts();
     }
 }

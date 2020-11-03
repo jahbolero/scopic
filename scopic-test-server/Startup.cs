@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using scopic_test_server.Data;
 using scopic_test_server.Helper;
 using scopic_test_server.Interface;
+using scopic_test_server.Services;
 
 namespace scopic_test_server
 {
@@ -38,6 +39,8 @@ namespace scopic_test_server
             services.AddScoped<IBidRepository, BidRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddSingleton<IBidWorker, BidWorker>();
             services.AddDbContext<ScopicContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ScopicConnection")));
             services.AddControllers();
             var appSettingsSection = Configuration.GetSection("AppSettings");

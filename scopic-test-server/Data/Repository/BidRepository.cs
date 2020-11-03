@@ -7,6 +7,7 @@ using scopic_test_server.Interface;
 using System.Linq;
 using static scopic_test_server.Helper.Codes;
 using Microsoft.EntityFrameworkCore;
+using scopic_test_server.Services;
 
 namespace scopic_test_server.Data
 {
@@ -14,11 +15,13 @@ namespace scopic_test_server.Data
     {
         private readonly ScopicContext _context;
         private readonly IMapper _mapper;
+        private readonly EmailService _emailService;
 
-        public BidRepository(ScopicContext context, IMapper mapper)
+        public BidRepository(ScopicContext context, IMapper mapper, EmailService emailService)
         {
             _context = context;
             _mapper = mapper;
+            _emailService = emailService;
         }
         public BidCode AddBid(BidCreateDto Bid)
         {
@@ -35,6 +38,16 @@ namespace scopic_test_server.Data
                     return BidCode.PriceTooLow;
                 if (bid.UserId == latestBid.UserId)
                     return BidCode.HighestBid;
+                var bidders = product.Bids.Select(x => x.User).Distinct();
+                foreach (var bidder in bidders)
+                {
+                    if (bidder.UserId != Bid.UserId)
+                    {
+                        var message = $"<h3>A new bid has been made for {product.ProductName}!</h3><p>Current highest bid amount:{bid.BidAmount}</p>";
+                        var mail = _emailService.NewMail(bidder.Username, $"Product Update {product.ProductName}", message);
+                    }
+
+                }
             }
             _context.Bid.Add(bid);
             _context.SaveChanges();

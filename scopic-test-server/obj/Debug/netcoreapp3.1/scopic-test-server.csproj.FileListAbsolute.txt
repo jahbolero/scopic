@@ -64,3 +64,6 @@ C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\obj\
 C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\AWSSDK.Core.dll
 C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\AWSSDK.S3.dll
 C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\skandinavisk\Documents\Others\Repository\scopic\scopic-test-server\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

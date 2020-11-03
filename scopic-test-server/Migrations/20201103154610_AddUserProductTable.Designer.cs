@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using scopic_test_server.Data;
 
 namespace scopic_test_server.Migrations
 {
     [DbContext(typeof(ScopicContext))]
-    partial class ScopicContextModelSnapshot : ModelSnapshot
+    [Migration("20201103154610_AddUserProductTable")]
+    partial class AddUserProductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,23 +99,6 @@ namespace scopic_test_server.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("scopic_test_server.Data.UserProduct", b =>
-                {
-                    b.Property<Guid>("UserProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("UserProductId");
-
-                    b.ToTable("UserProducts");
                 });
 
             modelBuilder.Entity("scopic_test_server.Data.Bid", b =>
