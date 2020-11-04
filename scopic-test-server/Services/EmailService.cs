@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
@@ -27,17 +29,29 @@ namespace scopic_test_server.Services
             return mail;
         }
 
-        public void SendEmails(List<MimeMessage> Msgs)
+        public async void SendEmails(List<MimeMessage> Msgs)
         {
-            SmtpClient client = new SmtpClient();
-            using var smtp = new SmtpClient();
-            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
             foreach (var msg in Msgs)
             {
-                smtp.Send(msg);
+                await SendEmail(msg);
             }
-            smtp.Disconnect(true);
+        }
+        public async Task SendEmail(MimeMessage Msg)
+        {
+            try
+            {
+                SmtpClient client = new SmtpClient();
+                using var smtp = new SmtpClient();
+                smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
+                await smtp.SendAsync(Msg);
+                smtp.Disconnect(true);
+            }
+            catch (Exception e)
+            {
+
+            }
+
         }
     }
 

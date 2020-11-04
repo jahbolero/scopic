@@ -5,6 +5,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { LoginComponent } from './components/login/login.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductComponent } from './components/product/product.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { Role } from './models/role';
 
@@ -47,6 +48,12 @@ const routes: Routes = [
         component: AdminDashboardComponent,
         canActivate: [AuthGuard],
         data: { roles: [Role.Admin] }
+    },
+    {
+        path: 'profile',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [Role.User] }
     },
 
     // otherwise redirect to home

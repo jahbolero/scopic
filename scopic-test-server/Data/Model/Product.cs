@@ -21,6 +21,6 @@ namespace scopic_test_server.Data
         public DateTime UploadDate { get; set; }
         public int Status { get; set; }
         public IEnumerable<Bid> Bids { get; set; }
-        public IEnumerable<UserProduct> UserProducts { get; set; }
+        public UserProduct UserProduct  { get; set; }
     }
 }

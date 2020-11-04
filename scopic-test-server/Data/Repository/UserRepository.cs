@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using scopic_test_server.DTO;
 using scopic_test_server.Interface;
 
@@ -8,8 +11,10 @@ namespace scopic_test_server.Data
     public class UserRepository : IUserRepository
     {
         private readonly ScopicContext _context;
-        public UserRepository(ScopicContext context)
+        private readonly IMapper _mapper;
+        public UserRepository(ScopicContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
         public User Authenticate(string username, string password)
@@ -28,6 +33,20 @@ namespace scopic_test_server.Data
         public User GetUser(Guid UserId)
         {
             return _context.Users.FirstOrDefault(x => x.UserId == UserId);
+        }
+
+        public UserProfileDto GetUserProfile(Guid UserId)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.UserId == UserId);
+            var productsBidOn = _context.Bid.Where(x => x.UserId == user.UserId).Include("Product.UserProduct").Select(y => y.Product).Distinct();
+            var userProfile = new UserProfileDto()
+            {
+                User = _mapper.Map<UserDto>(user),
+                ProductsBidOn = _mapper.Map<IEnumerable<ProductReadDto>>(productsBidOn)
+            };
+
+            return userProfile;
+
         }
     }
 }

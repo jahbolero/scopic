@@ -15,5 +15,8 @@ namespace scopic_test_server.Data
         [ForeignKey("Product")]
         public Guid ProductId { get; set; }
 
+        public Product Product { get; set; }
+        public User User { get; set; }
+
     }
 }

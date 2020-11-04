@@ -10,7 +10,6 @@ using System.IO;
 using static scopic_test_server.Helper.Codes;
 using Microsoft.AspNetCore.Http;
 using MimeKit;
-using MimeKit.Text;
 using scopic_test_server.Services;
 
 namespace scopic_test_server.Data

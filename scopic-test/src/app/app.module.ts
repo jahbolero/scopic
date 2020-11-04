@@ -11,12 +11,14 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component'
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { CountdownModule } from 'ngx-countdown';
 import { TimerValuePipe } from './pipes/timer-value.pipe';
 import { HighestBidPipe } from './pipes/highest-bid.pipe';
 import { ToLocalTimePipe } from './pipes/to-local-time.pipe';
-import { DateTransformPipe } from './pipes/date-transform.pipe'
+import { DateTransformPipe } from './pipes/date-transform.pipe';
+
 
 
 
@@ -34,6 +36,7 @@ import { DateTransformPipe } from './pipes/date-transform.pipe'
     HighestBidPipe,
     ToLocalTimePipe,
     DateTransformPipe,
+    UserProfileComponent,
 
   ],
   imports: [

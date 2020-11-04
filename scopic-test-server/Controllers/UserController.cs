@@ -70,6 +70,18 @@ namespace scopic_test_server
             return Ok(user);
         }
 
+        [Authorize(Roles = Role.User)]
+        [HttpGet]
+        [Route("profile")]
+        public IActionResult Profile()
+        {
+            var userId = HttpContext.User.Identity.Name;
+            var user = _repository.GetUserProfile(Guid.Parse(userId));
+            if (user == null)
+                return NotFound();
+            return Ok(user);
+        }
+
     }
 
 }

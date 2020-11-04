@@ -15,9 +15,9 @@ namespace scopic_test_server.Data
     {
         private readonly ScopicContext _context;
         private readonly IMapper _mapper;
-        private readonly EmailService _emailService;
+        private readonly IEmailService _emailService;
 
-        public BidRepository(ScopicContext context, IMapper mapper, EmailService emailService)
+        public BidRepository(ScopicContext context, IMapper mapper, IEmailService emailService)
         {
             _context = context;
             _mapper = mapper;
@@ -31,7 +31,7 @@ namespace scopic_test_server.Data
             var latestBid = _context.Bid.OrderByDescending(x => x.BidAmount).FirstOrDefault(x => x.ProductId == bid.ProductId);
             if (latestBid != null)
             {
-                var product = _context.Product.FirstOrDefault(x => x.ProductId == bid.ProductId);
+                var product = _context.Product.Include("Bids.User").FirstOrDefault(x => x.ProductId == bid.ProductId);
                 if (product == null)
                     return BidCode.Null;
                 if (bid.BidAmount <= latestBid.BidAmount)
@@ -43,8 +43,9 @@ namespace scopic_test_server.Data
                 {
                     if (bidder.UserId != Bid.UserId)
                     {
-                        var message = $"<h3>A new bid has been made for {product.ProductName}!</h3><p>Current highest bid amount:{bid.BidAmount}</p>";
-                        var mail = _emailService.NewMail(bidder.Username, $"Product Update {product.ProductName}", message);
+                        var message = $"<h3>A new bid has been made for {product.ProductName}!</h3><p>Current highest bid amount:{bid.BidAmount}</p><p>Submit a higher bid in order to win the auction!</p>";
+                        var mail = _emailService.NewMail(bidder.Username, $"New Bid for {product.ProductName}", message);
+                        _emailService.SendEmail(mail).ConfigureAwait(false);
                     }
 
                 }
