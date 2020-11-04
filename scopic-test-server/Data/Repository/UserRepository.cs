@@ -38,7 +38,7 @@ namespace scopic_test_server.Data
         public UserProfileDto GetUserProfile(Guid UserId)
         {
             var user = _context.Users.FirstOrDefault(x => x.UserId == UserId);
-            var productsBidOn = _context.Bid.Where(x => x.UserId == user.UserId).Include("Product.UserProduct").Select(y => y.Product).Distinct();
+            var productsBidOn = _context.Bid.Where(x => x.UserId == user.UserId).Include("Product.UserProduct").Include("Product.Bids").Select(y => y.Product).Distinct();
             var userProfile = new UserProfileDto()
             {
                 User = _mapper.Map<UserDto>(user),

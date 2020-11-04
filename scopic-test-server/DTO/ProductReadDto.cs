@@ -12,6 +12,7 @@ namespace scopic_test_server.DTO
         public DateTime ExpiryDate { get; set; }
         public DateTime UploadDate { get; set; }
         public IEnumerable<BidReadDto> Bids { get; set; }
-        public UserProductDto UserProduct  { get; set; }
+        public UserProductDto UserProduct { get; set; }
+        public int Status { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 import { Bid } from './bid';
+import { UserProduct } from './userProduct';
 
 export class Product {
     productId: string;
@@ -8,4 +9,6 @@ export class Product {
     expiryDate:Date;
     uploadDate:Date;
     bids:Array<Bid>;
+    status:number;
+    userProduct:UserProduct;
 }

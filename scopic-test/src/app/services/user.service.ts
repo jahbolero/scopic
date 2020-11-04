@@ -11,6 +11,6 @@ export class UserService {
 
   }
   public GetProfile(){
-   return this.http.get<any>(`${environment.apiUrl}/Products/`)
+   return this.http.get<any>(`${environment.apiUrl}/User/profile`)
   }
 }

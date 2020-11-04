@@ -5,8 +5,8 @@
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Ongoing Auctions</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Awarded Products</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Awarded Auctions</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Lost Auctions</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -14,27 +14,19 @@
                         <table class="table" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Project Name</th>
-                                    <th>Employer</th>
-                                    <th>Awards</th>
+                                    <th>Item Name</th>
+                                    <th>Highest Bid</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="#">Work 1</a></td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
+                                <div>
+
+                                </div>
+                                <tr *ngFor="let product of ongoingProducts">
+                                    <td>{{product.productName}}</td>
+                                    <td>${{product.bids|highestBid}}</td>
                                 </tr>
-                                <tr>
-                                    <td><a href="#">Work 2</a></td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Work 3</a></td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                </tr>
+      
                             </tbody>
                         </table>
                     </div>
@@ -42,27 +34,19 @@
                         <table class="table" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Project Name</th>
-                                    <th>Employer</th>
-                                    <th>Time</th>
+                                    <th>Item Name</th>
+                                    <th>Highest Bid</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="#">Work 1</a></td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
+                                <div>
+
+                                </div>
+                                <tr *ngFor="let product of awardedProducts">
+                                    <td>{{product.productName}}</td>
+                                    <td>${{product.bids|highestBid}}</td>
                                 </tr>
-                                <tr>
-                                    <td><a href="#">Work 2</a></td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Work 3</a></td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                </tr>
+      
                             </tbody>
                         </table>
                     </div>
@@ -70,27 +54,19 @@
                         <table class="table" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Contest Name</th>
-                                    <th>Date</th>
-                                    <th>Award Position</th>
+                                    <th>Item Name</th>
+                                    <th>Highest Bid</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="#">Work 1</a></td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
+                                <div>
+
+                                </div>
+                                <tr *ngFor="let product of lostProducts">
+                                    <td>{{product.productName}}</td>
+                                    <td>${{product.bids|highestBid}}</td>
                                 </tr>
-                                <tr>
-                                    <td><a href="#">Work 2</a></td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Work 3</a></td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                </tr>
+      
                             </tbody>
                         </table>
                     </div>

@@ -43,7 +43,7 @@ namespace scopic_test_server.Data
                 {
                     if (bidder.UserId != Bid.UserId)
                     {
-                        var message = $"<h3>A new bid has been made for {product.ProductName}!</h3><p>Current highest bid amount:{bid.BidAmount}</p><p>Submit a higher bid in order to win the auction!</p>";
+                        var message = $"<h3>A new bid has been made for {product.ProductName}!</h3><p>Current highest bid amount:${bid.BidAmount}</p><p>Submit a higher bid in order to win the auction!</p>";
                         var mail = _emailService.NewMail(bidder.Username, $"New Bid for {product.ProductName}", message);
                         _emailService.SendEmail(mail).ConfigureAwait(false);
                     }
