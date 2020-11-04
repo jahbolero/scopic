@@ -5,6 +5,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { LoginComponent } from './components/login/login.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductComponent } from './components/product/product.component';
+import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { Role } from './models/role';
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
     },
     {
         path: 'addProduct',

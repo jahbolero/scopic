@@ -9,5 +9,6 @@ namespace scopic_test_server.Interface
         User GetUser(Guid UserId);
         User Authenticate(string Username, string Password);
         UserProfileDto GetUserProfile(Guid UserId);
+        User Register(string Username, string Password);
     }
 }

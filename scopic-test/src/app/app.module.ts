@@ -18,6 +18,7 @@ import { TimerValuePipe } from './pipes/timer-value.pipe';
 import { HighestBidPipe } from './pipes/highest-bid.pipe';
 import { ToLocalTimePipe } from './pipes/to-local-time.pipe';
 import { DateTransformPipe } from './pipes/date-transform.pipe';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -37,6 +38,7 @@ import { DateTransformPipe } from './pipes/date-transform.pipe';
     ToLocalTimePipe,
     DateTransformPipe,
     UserProfileComponent,
+    RegisterComponent,
 
   ],
   imports: [

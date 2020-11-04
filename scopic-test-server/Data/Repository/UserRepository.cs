@@ -48,5 +48,19 @@ namespace scopic_test_server.Data
             return userProfile;
 
         }
+
+        public User Register(string Username, string Password)
+        {
+            var user = new User()
+            {
+                UserId = Guid.NewGuid(),
+                Username = Username,
+                Password = Password,
+                Role = Role.User
+            };
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return user;
+        }
     }
 }

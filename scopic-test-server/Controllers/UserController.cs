@@ -34,6 +34,20 @@ namespace scopic_test_server
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
+            string tokenString = GenerateToken(user);
+
+            // return basic user info and authentication token
+            return Ok(new
+            {
+                Id = user.UserId,
+                Username = user.Username,
+                Token = tokenString,
+                Role = user.Role
+            });
+        }
+
+        private string GenerateToken(Data.User user)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -48,15 +62,7 @@ namespace scopic_test_server
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
-
-            // return basic user info and authentication token
-            return Ok(new
-            {
-                Id = user.UserId,
-                Username = user.Username,
-                Token = tokenString,
-                Role = user.Role
-            });
+            return tokenString;
         }
 
         [Authorize(Roles = Role.Admin)]
@@ -80,6 +86,25 @@ namespace scopic_test_server
             if (user == null)
                 return NotFound();
             return Ok(user);
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("register")]
+        public IActionResult Register([FromBody] LoginDto Register)
+        {
+            var user = _repository.Register(Register.Username, Register.Password);
+            if (user == null)
+                return BadRequest(new { error = "Registration Failed" });
+            string tokenString = GenerateToken(user);
+            return Ok(new
+            {
+                Id = user.UserId,
+                Username = user.Username,
+                Token = tokenString,
+                Role = user.Role
+            });
         }
 
     }
