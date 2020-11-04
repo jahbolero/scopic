@@ -8,7 +8,7 @@ export class HighestBidPipe implements PipeTransform {
 
   transform(value: any, ...args: unknown[]): any {
     
-    return GetHighestBid(value).bidAmount;;
+    return GetHighestBid(value);;
   }
 
 }

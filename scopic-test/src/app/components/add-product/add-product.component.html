@@ -24,7 +24,7 @@
         <div class="col-md-8">
           <img class="img-fluid" [src]="imgUrl == null?(product.imgUrl|unchacheDate):imgUrl" width="400" height="300" alt="">
         </div>
-        <div class="col-md-4">
+        <div *ngIf="product.status !=1 ; else awardedProduct " class="col-md-4">
           <form [formGroup]="addProductForm" (ngSubmit)="editProduct()">
           <label c for="productName">Product Name</label>
           <input type="text" id="productName" [(ngModel)]="product.productName" formControlName="productName" class="form-control">
@@ -39,6 +39,11 @@
           <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Save Changes</button>
         </form>
         </div>
+        <ng-template #awardedProduct>
+          <div class="col-md-4">
+            <h2>This product has already been awarded to {{(product.bids|highestBid).user.username}}</h2>
+          </div>
+        </ng-template>
   </div>
     </ng-template>
     <div class=row text-center>

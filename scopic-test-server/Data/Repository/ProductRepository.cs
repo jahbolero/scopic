@@ -11,6 +11,8 @@ using static scopic_test_server.Helper.Codes;
 using Microsoft.AspNetCore.Http;
 using MimeKit;
 using scopic_test_server.Services;
+using Microsoft.AspNetCore.SignalR;
+using scopic_test_server.Hubs;
 
 namespace scopic_test_server.Data
 {
@@ -21,13 +23,15 @@ namespace scopic_test_server.Data
         private readonly S3UploadImage _S3UploadeImage;
         private readonly AppSettings _appSettings;
         private readonly IEmailService _emailService;
+        private readonly IHubContext<ProductHub> _productHub;
 
-        public ProductRepository(ScopicContext context, IMapper mapper, AppSettings appSettings, IEmailService emailService)
+        public ProductRepository(ScopicContext context, IMapper mapper, AppSettings appSettings, IEmailService emailService, IHubContext<ProductHub> productHub)
         {
             _context = context;
             _mapper = mapper;
             _appSettings = appSettings;
             _emailService = emailService;
+            _productHub = productHub;
             _S3UploadeImage = new S3UploadImage(appSettings);
         }
         public IEnumerable<Product> GetAllProducts(int Page, string Sort, string SearchString)//Sort asc = true, desc = false
@@ -94,7 +98,7 @@ namespace scopic_test_server.Data
 
         public ProductCode EditProduct(ProductUpdateDto Product)
         {
-            var product = _context.Product.FirstOrDefault(x => x.ProductId == Product.ProductId);
+            var product = _context.Product.Include(x => x.Bids).FirstOrDefault(x => x.ProductId == Product.ProductId);
             if (product == null)
                 return ProductCode.Null;
             if (DateTime.UtcNow > Product.ExpiryDate)
@@ -109,6 +113,8 @@ namespace scopic_test_server.Data
             product.ProductName = Product.ProductName;
             product.ProductDescription = Product.ProductDescription;
             product.ExpiryDate = Product.ExpiryDate;
+            product.Bids = product.Bids.OrderByDescending(x => x.BidAmount);
+            _productHub.Clients.All.SendAsync("ReceiveProduct", _mapper.Map<ProductReadDto>(product));
             _context.SaveChanges();
             return ProductCode.Success;
         }

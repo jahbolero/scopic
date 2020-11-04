@@ -24,7 +24,7 @@
                                 </div>
                                 <tr *ngFor="let product of ongoingProducts">
                                     <td>{{product.productName}}</td>
-                                    <td>${{product.bids|highestBid}}</td>
+                                    <td>${{(product.bids|highestBid).bidAmount}}</td>
                                 </tr>
       
                             </tbody>
@@ -35,7 +35,7 @@
                             <thead>
                                 <tr>
                                     <th>Item Name</th>
-                                    <th>Highest Bid</th>
+                                    <th>Bill Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,7 +44,7 @@
                                 </div>
                                 <tr *ngFor="let product of awardedProducts">
                                     <td>{{product.productName}}</td>
-                                    <td>${{product.bids|highestBid}}</td>
+                                    <td>${{(product.bids|highestBid).bidAmount}}</td>
                                 </tr>
       
                             </tbody>
@@ -64,7 +64,7 @@
                                 </div>
                                 <tr *ngFor="let product of lostProducts">
                                     <td>{{product.productName}}</td>
-                                    <td>${{product.bids|highestBid}}</td>
+                                    <td>${{(product.bids|highestBid).bidAmount}}</td>
                                 </tr>
       
                             </tbody>

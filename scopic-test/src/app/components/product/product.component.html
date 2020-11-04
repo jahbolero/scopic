@@ -8,13 +8,13 @@
           <div class="col-md-4">
             <h3 class="my-3">{{product.productName}}</h3>
             <span>Time Left:<span class="text-danger">  <span>
-              <countdown [config]="{leftTime: product.expiryDate | timerValue, template: '$!d!d $!h!h $!m!m $!s!s'}"></countdown>
+              <countdown [config]="{leftTime: product.expiryDate | timerValue, template: '$!d!d $!h!h $!m!m $!s!s'}"  (finished)="timerFinished()"></countdown>
             </span></span></span>
             <br>
-            <span>Highest Bid:<span class="text-success">${{product.bids.length == 0 ? "0":product.bids| highestBid}}</span></span>
+            <span>Highest Bid:<span class="text-success">${{product.bids.length == 0 ? "0":(product.bids| highestBid).bidAmount}}</span></span>
             <h5>Produc Description</h5>
             <p>{{product.productDescription}}</p>
-            <form *ngIf="(product.expiryDate | timerValue) >=0 " [formGroup]="bidForm" (ngSubmit)="submitBid()">
+            <form *ngIf="(product.expiryDate | timerValue) >=0" [formGroup]="bidForm" (ngSubmit)="submitBid()">
             <input type="number" formControlName="bidAmount" class="form-control">
             <button [disabled]="disabled" type="submit" class="btn btn-info w-100">Submit Bid</button>
             
@@ -34,12 +34,15 @@
             <div *ngIf="success"  class="success alert-success">
               {{success}}
             </div>
-
           </form>
+          <div *ngIf="product.status == 1">
+              <p>Winner of the auction is:{{product.bids.length == 0 ? "0":(product.bids| highestBid).user.username}}</p>
+          </div>
+
           </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row" *ngIf="product.status != 1">
         <table class="table" style="width:100%">
             <tr>
               <th>Bid Date</th>

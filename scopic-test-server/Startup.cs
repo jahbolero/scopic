@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using scopic_test_server.Data;
 using scopic_test_server.Helper;
+using scopic_test_server.Hubs;
 using scopic_test_server.Interface;
 using scopic_test_server.Services;
 
@@ -34,7 +35,13 @@ namespace scopic_test_server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+           builder =>
+           {
+               builder.AllowAnyMethod().AllowAnyHeader()
+                      .WithOrigins("http://localhost:4200")
+                      .AllowCredentials();
+           }));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IBidRepository, BidRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -43,6 +50,7 @@ namespace scopic_test_server
             services.AddSingleton<IBidWorker, BidWorker>();
             services.AddDbContext<ScopicContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ScopicConnection")));
             services.AddControllers();
+            services.AddSignalR();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -90,10 +98,12 @@ namespace scopic_test_server
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+            // app.UseCors(x => x
+            // .AllowAnyOrigin()
+            // .AllowAnyMethod()
+            // .AllowAnyHeader());
+            app.UseCors("CorsPolicy");
+
 
             app.UseHttpsRedirection();
 
@@ -107,6 +117,8 @@ namespace scopic_test_server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<BidHub>("api/bidSocket");
+                endpoints.MapHub<ProductHub>("api/productSocket");
             });
         }
     }

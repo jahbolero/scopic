@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using scopic_test_server.DTO;
+using scopic_test_server.Hubs;
 using scopic_test_server.Interface;
 using static scopic_test_server.Helper.Codes;
 

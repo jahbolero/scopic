@@ -29,7 +29,7 @@
           <span>
           <div class="card-body text-center">
             <h5 class="card-title  mb-0">{{product.productName}}</h5>
-            <h5 class="card-title mb-0 text-danger">${{product.bids.length == 0 ? "0":product.bids| highestBid}}</h5>
+            <h5 class="card-title mb-0 text-danger">${{product.bids.length == 0 ? "0":(product.bids| highestBid).bidAmount}}</h5>
             <span>
               <countdown [config]="{leftTime: product.expiryDate | timerValue, template: '$!d!d $!h!h $!m!m $!s!s'}"></countdown>
             </span>
@@ -56,7 +56,7 @@
         <tbody>
           <tr *ngFor="let product of products;let i = index">
             <td>{{product.productName}}</td>
-            <td>${{product.bids.length == 0 ? "0":product.bids| highestBid}}</td>
+            <td>${{product.bids.length == 0 ? "0":(product.bids| highestBid).bidAmount}}</td>
             <td>
               <a [routerLink]="['/editProduct',product.productId]"><button class="btn btn-warning">View</button></a>
               <button type="button" class="btn btn-danger" (click)="deleteProduct(product.productId)">Delete</button></td>

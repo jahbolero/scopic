@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Bid } from 'src/app/models/bid';
 import { Product } from 'src/app/models/product';
 import { BidService } from 'src/app/services/bid.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -21,6 +22,8 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getProduct();
+    this.bidSerivce.RetrieveBids().subscribe( (receivedObj: Bid) => { this.updateBids(receivedObj);});
+    this.productService.RetrieveProduct().subscribe((receivedObj:Product)=>{this.updateProduct(receivedObj)})
   }
   initForm(){
     this.bidForm = this.formBuilder.group({
@@ -38,7 +41,6 @@ export class ProductComponent implements OnInit {
     if(this.bidForm.valid){
       this.disabled=true;
     this.bidSerivce.AddBid(this.product.productId,this.bidForm.value.bidAmount).subscribe(response=>{
-      this.getProduct();
       this.success= "Added bid!"
       this.error = null
       this.disabled=false;
@@ -48,7 +50,18 @@ export class ProductComponent implements OnInit {
       this.disabled=false;
     })
     }
-    
+  }
+  timerFinished(){
+    this.getProduct();
+  }
+  updateBids(bid :Bid){
+    bid.bidDate = new Date(bid.bidDate.toString().replace("Z",""));
+    this.product.bids = [bid].concat(this.product.bids);
+  }
+  updateProduct(product :Product){
+    product.expiryDate = new Date(product.expiryDate.toString().replace("Z",""));
+    this.product.imgUrl="";
+    this.product = product;
   }
   get bidAmount(){return this.bidForm.get("bidAmount")}
 }
