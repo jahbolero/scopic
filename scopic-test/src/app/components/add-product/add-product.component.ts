@@ -49,7 +49,6 @@ export class AddProductComponent implements OnInit {
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
-    console.log(files[0]);
     var reader = new FileReader();
     this.imgPath = files;
     reader.readAsDataURL(files[0]); 

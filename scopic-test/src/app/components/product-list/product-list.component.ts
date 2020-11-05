@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
   searchProduct(searchString:string){
     this.searchString = searchString;
     this.refreshPagination();
-    console.log(this.searchString);
+
     this.getProducts();
   }
   sortProducts(){

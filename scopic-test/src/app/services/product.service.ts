@@ -27,7 +27,6 @@ export class ProductService {
   public async start() {
     try {
       await this.connection.start();
-      console.log("connected to product");
     } catch (err) {
       console.log(err);
       setTimeout(() => this.start(), 5000);
@@ -45,11 +44,9 @@ export class ProductService {
     return this.http.delete<any>(`${environment.apiUrl}/Products/${productId}`)
    }
    public AddProduct(product:FormData){
-     console.log(product.get("expiryDate"));
     return this.http.post<any>(`${environment.apiUrl}/Products/addProduct`,product);
    }
    public EditProduct(product:FormData){
-    console.log(product.get("expiryDate"));
    return this.http.post<any>(`${environment.apiUrl}/Products/editProduct`,product);
   }
   

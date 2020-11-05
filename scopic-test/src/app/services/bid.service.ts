@@ -28,7 +28,6 @@ export class BidService {
   public async start() {
     try {
       await this.connection.start();
-      console.log("connected to bid");
     } catch (err) {
       console.log(err);
       setTimeout(() => this.start(), 5000);

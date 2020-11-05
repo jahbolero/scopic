@@ -10,7 +10,6 @@ import { Bid } from '../models/bid';
       }
       export function ConvertToLocalTime(date:Date){
         var newDate = new Date(`${date.toString()}Z`);
-        console.log(newDate);
         return newDate;
       }
 

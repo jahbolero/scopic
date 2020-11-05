@@ -9,9 +9,6 @@ export class TimerValuePipe implements PipeTransform {
   transform(date: Date, ...args: unknown[]): unknown {
     var expiryDate = ConvertToLocalTime(date);
     var currentDate = new Date();
-    console.log(expiryDate.getTime());
-    console.log(currentDate.getTime());
-    
     var seconds = (expiryDate.getTime() - currentDate.getTime()) / 1000;
     return seconds;
   }

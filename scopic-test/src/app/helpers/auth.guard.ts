@@ -25,13 +25,10 @@ export class AuthGuard implements CanActivate {
           }else if(user.role == Role.User){
             this.router.navigate(['/products']);
           } 
-          console.log(route.url)
           return false;
         }
-        console.log("Can go in")
         return true;
       }
-      console.log(route.url)
       this.router.navigate(['/login']);
       return false;
   }
