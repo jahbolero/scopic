@@ -36,11 +36,11 @@ There are 2 user types, *User* and *Admin*.
 
 **In order to test the email notification feature, please register using a valid email address.** 
 
-`(User)username:user|password:user`
+`(User)username:user@email.com|password:user`
 
-`(User)username:user1|password:user1`
+`(User)username:user1@email.com|password:user1`
 
-`(User)username:user2|password:user2`
+`(User)username:user2@email.com|password:user2`
 
 `(Admin)username:admin|password:admin`
 
