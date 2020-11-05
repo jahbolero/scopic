@@ -48,3 +48,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+scopic-test-server/bin/Debug/netcoreapp3.1/scopic-test-server.dll
+scopic-test-server/bin/Debug/netcoreapp3.1/scopic-test-server.pdb
+scopic-test-server/obj/Debug/netcoreapp3.1/scopic-test-server.dll
+scopic-test-server/obj/Debug/netcoreapp3.1/scopic-test-server.pdb

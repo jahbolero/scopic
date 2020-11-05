@@ -101,7 +101,7 @@ namespace scopic_test_server.Data
 
         public ProductCode EditProduct(ProductUpdateDto Product)
         {
-            var product = _context.Product.Include(x => x.Bids).FirstOrDefault(x => x.ProductId == Product.ProductId);
+            var product = _context.Product.Include("Bids.User").FirstOrDefault(x => x.ProductId == Product.ProductId);
             if (product == null)
                 return ProductCode.Null;
             if (DateTime.UtcNow > Product.ExpiryDate)
