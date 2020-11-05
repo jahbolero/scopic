@@ -149,7 +149,7 @@ namespace scopic_test_server.Data
                 userProductList.Add(userProduct);
                 foreach (var bidder in bidders)
                 {
-                    var message = bidder.UserId == userProduct.UserId ? $"<h1>Congratulations, you won the bid for {product.ProductName}!</h1><p>Payment amount:${highestBid.BidAmount}</p><p>Bid date:{highestBid.BidDate}</p>" :
+                    var message = bidder.UserId == userProduct.UserId ? $"<h1>Congratulations, you won the bid for {product.ProductName}!</h1><p>Payment amount:${highestBid.BidAmount}</p>" :
                      $"<h1>Unfortunately, you didn't win the bid for {product.ProductName}!</h1><p>Final highest bid amount is:${highestBid.BidAmount}</p>";
                     var mail = _emailService.NewMail(bidder.Username, $"Product Update {product.ProductName}", message);
                     mailList.Add(mail);

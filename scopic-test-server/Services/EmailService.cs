@@ -12,11 +12,8 @@ namespace scopic_test_server.Services
     public class EmailService : IEmailService
     {
         private readonly AppSettings _appSettings;
-        private readonly SmtpClient _emailClient;
         public EmailService(AppSettings appSettings)
         {
-            _emailClient = new SmtpClient();
-            using var smtp = new SmtpClient();
             _appSettings = appSettings;
         }
         public MimeMessage NewMail(string recepient, string subject, string message)
@@ -34,22 +31,24 @@ namespace scopic_test_server.Services
 
         public async Task SendEmails(List<MimeMessage> Msgs)
         {
-            _emailClient.Connect(_appSettings.SmtpServer, 587, SecureSocketOptions.StartTls);
-            _emailClient.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
+            using var smtp = new SmtpClient();
+            smtp.Connect(_appSettings.SmtpServer, 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
             foreach (var msg in Msgs)
             {
-                await _emailClient.SendAsync(msg);
+                await smtp.SendAsync(msg);
             }
-            _emailClient.Disconnect(true);
+            smtp.Disconnect(true);
         }
         public async void SendEmail(MimeMessage Msg)
         {
             try
             {
-                _emailClient.Connect(_appSettings.SmtpServer, 587, SecureSocketOptions.StartTls);
-                _emailClient.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
-                await _emailClient.SendAsync(Msg);
-                _emailClient.Disconnect(true);
+                using var smtp = new SmtpClient();
+                smtp.Connect(_appSettings.SmtpServer, 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
+                await smtp.SendAsync(Msg);
+                smtp.Disconnect(true);
             }
             catch (Exception e)
             {
