@@ -43,3 +43,6 @@ There are 2 user types, *User* and *Admin*.
 `(User)username:user2|password:user2`
 
 `(Admin)username:admin|password:admin`
+
+##Documentation
+Postman documentation:https://documenter.getpostman.com/view/8117716/TVYNZbD6
