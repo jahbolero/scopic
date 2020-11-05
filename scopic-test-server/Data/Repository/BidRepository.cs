@@ -52,6 +52,12 @@ namespace scopic_test_server.Data
                         var mail = _emailService.NewMail(bidder.Username, $"New Bid for {product.ProductName}", message);
                         Task.Factory.StartNew(() => _emailService.SendEmail(mail));
                     }
+                    else
+                    {
+                        var message = $"<h3>Your bid for {product.ProductName} is a success!</h3><p>Your bid amount:${bid.BidAmount}</p><p>Submit a higher bid in order to win the auction!</p>";
+                        var mail = _emailService.NewMail(bidder.Username, $"Bid success for {product.ProductName}", message);
+                        Task.Factory.StartNew(() => _emailService.SendEmail(mail));
+                    }
 
                 }
             }
