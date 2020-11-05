@@ -34,6 +34,8 @@ This project is an auction app built as a test task technical assessment.
 ## Credentials
 There are 2 user types, *User* and *Admin*.
 
+**In order to test the email notification feature, please register using a valid email address.** 
+
 `(User)username:user|password:user`
 
 `(User)username:user1|password:user1`
