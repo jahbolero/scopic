@@ -13,6 +13,7 @@ using MimeKit;
 using scopic_test_server.Services;
 using Microsoft.AspNetCore.SignalR;
 using scopic_test_server.Hubs;
+using System.Threading.Tasks;
 
 namespace scopic_test_server.Data
 {
@@ -125,7 +126,7 @@ namespace scopic_test_server.Data
             return expiredProducts;
         }
 
-        public void ProcessProducts()
+        public async Task ProcessProducts()
         {
             var expiredProducts = GetExpiredProducts();
             var userProductList = new List<UserProduct>();
@@ -151,7 +152,7 @@ namespace scopic_test_server.Data
                 }
             }
             _context.UserProducts.AddRange(userProductList);
-            _emailService.SendEmails(mailList);
+            await _emailService.SendEmails(mailList);
             _context.SaveChanges();
         }
     }

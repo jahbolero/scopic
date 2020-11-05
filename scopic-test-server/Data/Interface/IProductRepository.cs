@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using scopic_test_server.Data;
 using scopic_test_server.DTO;
 using static scopic_test_server.Helper.Codes;
@@ -14,6 +15,6 @@ namespace scopic_test_server.Interface
         bool DeleteProduct(Guid ProductId);
         ProductCode EditProduct(ProductUpdateDto Product);
         IEnumerable<Product> GetExpiredProducts();
-        void ProcessProducts();
+        Task ProcessProducts();
     }
 }

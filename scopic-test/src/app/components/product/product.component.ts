@@ -55,13 +55,19 @@ export class ProductComponent implements OnInit {
     this.getProduct();
   }
   updateBids(bid :Bid){
-    bid.bidDate = new Date(bid.bidDate.toString().replace("Z",""));
-    this.product.bids = [bid].concat(this.product.bids);
+    if(this.product.productId == bid.productId){
+      bid.bidDate = new Date(bid.bidDate.toString().replace("Z",""));
+      this.product.bids = [bid].concat(this.product.bids);
+    }
+
   }
   updateProduct(product :Product){
-    product.expiryDate = new Date(product.expiryDate.toString().replace("Z",""));
-    this.product.imgUrl="";
-    this.product = product;
+    if(this.product.productId == product.productId){
+      product.expiryDate = new Date(product.expiryDate.toString().replace("Z",""));
+      this.product.imgUrl="";
+      this.product = product;
+    }
+
   }
   get bidAmount(){return this.bidForm.get("bidAmount")}
 }
