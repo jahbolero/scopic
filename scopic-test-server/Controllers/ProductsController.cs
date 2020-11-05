@@ -36,6 +36,8 @@ namespace scopic_test_server
         public ActionResult<ProductReadDto> GetProduct(Guid ProductId)
         {
             var result = _repository.GetProduct(ProductId);
+            if (result == null)
+                return NotFound();
             result.Bids = result.Bids.OrderByDescending(x => x.BidAmount);
             return Ok(_mapper.Map<ProductReadDto>(result));
         }
