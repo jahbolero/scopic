@@ -7,5 +7,6 @@ namespace scopic_test_server.Helper
         public string AwsSecretKey { get; set; }
         public string MailSender { get; set; }
         public string MailPassword { get; set; }
+        public string SmtpServer { get; set; }
     }
 }

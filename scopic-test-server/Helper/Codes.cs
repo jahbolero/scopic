@@ -22,6 +22,8 @@ namespace scopic_test_server.Helper
             Success,
             [Description("Expiry date time must be set greater than the current date time")]
             InvalidDate,
+            [Description("Product is already awarded.")]
+            AlreadyAwarded,
             [Description("Product could not be found. Please refresh your browser.")]
             Null
         }

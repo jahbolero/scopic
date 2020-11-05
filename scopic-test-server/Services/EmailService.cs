@@ -34,7 +34,7 @@ namespace scopic_test_server.Services
 
         public async Task SendEmails(List<MimeMessage> Msgs)
         {
-            _emailClient.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            _emailClient.Connect(_appSettings.SmtpServer, 587, SecureSocketOptions.StartTls);
             _emailClient.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
             foreach (var msg in Msgs)
             {
@@ -46,7 +46,7 @@ namespace scopic_test_server.Services
         {
             try
             {
-                _emailClient.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+                _emailClient.Connect(_appSettings.SmtpServer, 587, SecureSocketOptions.StartTls);
                 _emailClient.Authenticate(_appSettings.MailSender, _appSettings.MailPassword);
                 await _emailClient.SendAsync(Msg);
                 _emailClient.Disconnect(true);

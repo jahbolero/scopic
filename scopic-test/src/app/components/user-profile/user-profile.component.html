@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Ongoing Auctions</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Awarded Auctions</a>
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">In Progress Auctions</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Won Auctions</a>
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Lost Auctions</a>
                     </div>
                 </nav>
@@ -23,7 +23,7 @@
 
                                 </div>
                                 <tr *ngFor="let product of ongoingProducts">
-                                    <td>{{product.productName}}</td>
+                                    <td><a [routerLink]="['/product',product.productId]">{{product.productName}}</a></td>
                                     <td>${{(product.bids|highestBid).bidAmount}}</td>
                                 </tr>
       
@@ -43,7 +43,7 @@
 
                                 </div>
                                 <tr *ngFor="let product of awardedProducts">
-                                    <td>{{product.productName}}</td>
+                                    <td><a [routerLink]="['/product',product.productId]">{{product.productName}}</a></td>
                                     <td>${{(product.bids|highestBid).bidAmount}}</td>
                                 </tr>
       
@@ -63,7 +63,7 @@
 
                                 </div>
                                 <tr *ngFor="let product of lostProducts">
-                                    <td>{{product.productName}}</td>
+                                    <td><a [routerLink]="['/product',product.productId]">{{product.productName}}</a></td>
                                     <td>${{(product.bids|highestBid).bidAmount}}</td>
                                 </tr>
       

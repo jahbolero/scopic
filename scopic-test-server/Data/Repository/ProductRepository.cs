@@ -90,6 +90,8 @@ namespace scopic_test_server.Data
             var product = _context.Product.FirstOrDefault(x => x.ProductId == ProductId);
             if (product == null)
                 return false;
+            if (product.Status == 1)
+                return false;
             var bids = _context.Bid.Where(x => x.ProductId == product.ProductId);
             _context.Bid.RemoveRange(bids);
             _context.Product.Remove(product);
@@ -104,6 +106,8 @@ namespace scopic_test_server.Data
                 return ProductCode.Null;
             if (DateTime.UtcNow > Product.ExpiryDate)
                 return ProductCode.InvalidDate;
+            if (product.Status == 1)
+                return ProductCode.AlreadyAwarded;
             if (Product.ImgFile != null)
             {
                 var imgName = GetImgName(Product.ImgFile, product.ProductId);
