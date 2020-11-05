@@ -51,6 +51,9 @@ namespace scopic_test_server.Data
 
         public User Register(string Username, string Password)
         {
+            var existingUser = _context.Users.FirstOrDefault(x => x.Username == Username);
+            if (existingUser != null)
+                return null;
             var user = new User()
             {
                 UserId = Guid.NewGuid(),
